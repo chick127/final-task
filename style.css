@@ -1,0 +1,249 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(249, 222, 178);
+  color: #333;
+  font-size: 17px;
+  line-height: 1.5;
+  padding: 60px;
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 30px;
+  border-radius: 50%;
+}
+
+.main {
+  color: rgb(0, 0, 0);
+  line-height: 2;
+}
+
+.navbar {
+  background-color: rgb(155, 93, 0);
+  color: white;
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: nowrap;
+  /* overflow-x: auto; */ /*네브바 밑의 스크롤바를 생기게 해줌 */
+  white-space: nowrap;
+  gap: 10px;
+}
+
+.navbar .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+}
+
+.navbar .logo {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  border-bottom: 2px #fff solid;
+  color: #ddd;
+}
+
+nav a:hover {
+  background-color: rgb(139, 75, 3);
+}
+
+nav:has(a:hover) a:not(:hover) {
+  opacity: 0.5;
+}
+
+#mijung {
+  position: relative;
+  cursor: pointer;
+}
+
+/* 버튼 색과 디자인 바꾸기 */
+
+.btn-outline-dark {
+  background-color: white !important;
+  border: 2px solid black !important;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-link {
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.btn-outline-dark:hover {
+  background-color: rgb(155, 93, 0) !important;
+}
+
+.btn-outline-dark:hover .btn-link {
+  color: white !important;
+}
+
+.btn-outline-dark:active {
+  background-color: black !important;
+}
+
+.btn-outline-dark:active .btn-link {
+  color: white !important;
+}
+
+/* dialog */
+
+dialog {
+  animation: fade-out 0.7s ease-out;
+}
+
+dialog:open {
+  animation: fade-in 0.7s ease-out;
+}
+
+dialog:open::backdrop {
+  animation: backdrop-fade-in 0.7s ease-out forwards;
+}
+
+/* Animation keyframes */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+    display: block;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleY(0);
+    display: none;
+  }
+}
+
+@keyframes backdrop-fade-in {
+  0% {
+    background-color: rgb(0 0 0 / 0%);
+  }
+
+  100% {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+body,
+button {
+  font-family: system-ui;
+}
+
+/* process */
+
+.pv-box {
+  padding: 10px;
+
+  height: 500px;
+  overflow-y: scroll;
+}
+.pv-box img {
+  width: 300px;
+  height: auto;
+}
+.pv-box .fade-wrap {
+  transition: 1s;
+
+  opacity: 0;
+
+  position: relative;
+  left: -50px;
+
+  margin-bottom: 20px;
+}
+.pv-box .fade-wrap.fade-in {
+  opacity: 1;
+
+  left: 0;
+}
+@media (max-width: 768px) {
+  .flex-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 450px) {
+  .flex-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3); /* 어두운 배경 효과 */
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+/* 내부 버튼 스타일 조정 (이미 btn-outline-dark 클래스 사용 중이라면 필요 없음) */
+dialog button {
+  margin-top: 1rem;
+}

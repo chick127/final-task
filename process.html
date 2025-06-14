@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹프로그래밍</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        /* overflow: hidden; */
+      }
+
+      .main-content-container {
+        padding-top: 60px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-sizing: border-box;
+      }
+
+      .pv-box {
+        padding: 0;
+      }
+      .pv-box img {
+        width: 100%; /* 이미지가 부모 너비의 100%를 차지 */
+        height: auto; /* 가로세로 비율 유지 */
+        display: block;
+        margin: 0 auto 20px;
+      }
+      .pv-box .fade-wrap {
+        transition: opacity 1s ease-out, transform 1s ease-out;
+        opacity: 0;
+        transform: translateX(-50px);
+        margin-bottom: 50px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .pv-box .fade-wrap.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">My homepage</div>
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="project.html">Project</a></li>
+          <li><a href="process.html">Process</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main-content-container">
+      <br />
+      <h1>Process</h1>
+      <br />
+
+      <div class="pv-box">
+        <div class="fade-wrap">
+          <h2>프로그래머스 문제 활동 기록</h2>
+          <img src="프로그래머스1.PNG" alt="img" class="my-image" />
+          <p>
+            총 23문제를 풀었으며, 1 문제를 풀지 못했다. 그리고 142회의 실행
+            횟수를 기록했다.
+          </p>
+        </div>
+        <div class="fade-wrap">
+          <h2>일일 활동 기록</h2>
+          <img src="프로그래머스2.PNG" alt="img" />
+          <p>일일 활동 기록은 총 11일을 기록했다.</p>
+        </div>
+        <div class="fade-wrap">
+          <h2>문제 풀이 예시</h2>
+          <img src="프로그래머스3.PNG" alt="img" />
+          <p></p>
+        </div>
+        <div class="fade-wrap">
+          <h2>문제 풀이 예시</h2>
+          <img src="프로그래머스4.PNG" alt="img" />
+          <p></p>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const fadingElements = document.querySelectorAll('.fade-wrap')
+
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1,
+        }
+
+        const contentObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('fade-in')
+            } else {
+              entry.target.classList.remove('fade-in')
+            }
+          })
+        }, observerOptions)
+
+        fadingElements.forEach((element) => {
+          contentObserver.observe(element)
+        })
+
+        const initialCheck = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in')
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.1 }
+        )
+
+        fadingElements.forEach((element) => {
+          initialCheck.observe(element)
+        })
+      })
+    </script>
+  </body>
+</html>
